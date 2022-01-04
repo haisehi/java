@@ -236,3 +236,7 @@ public class exampleFB extends JFrame {
 	}
 
 }
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+CREATE PROCEDURE sp_SelectByGender @gender VARCHAR(10)
+AS
+	select * from account where gender = @gender 
