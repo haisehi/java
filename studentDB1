@@ -254,12 +254,31 @@ public class exampleFB extends JFrame {
 		    	
 	    }  }
 	    );
-		
+		Display();
+		 
+		JScrollPane sp = new JScrollPane(tbaccount);    
+		cont.add(sp);
 		f.setSize(200,200);
 		f.pack();
 		f.setVisible(true); 	
 	}
-	
+	// jtable
+	public void Display() {
+		ConnectDB conn = new ConnectDB();
+        rs = conn.ListAccount("Select * from account");
+        String tile[] = {"Username","Password","Gender","Department","Faculty"};
+		DefaultTableModel tm = new DefaultTableModel(tile,0);
+        try {
+        	while(rs.next()){
+        		Object data[] = {rs.getString("Username"),rs.getString("Password"),rs.getString("gender"),rs.getString("department"),rs.getString("Faculty")};	        		
+        		tbaccount = new JTable(tm);
+        		tm.addRow(data);
+        	}
+    }
+    catch(SQLException e){
+    	e.printStackTrace();
+    }
+	}
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
