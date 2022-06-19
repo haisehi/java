@@ -1,0 +1,26 @@
+package ChatServer;
+
+import java.awt.GridLayout;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import ChatLibrary.*;
+import ChatLibrary.ChatMessageSocket;
+
+public class server  extends JFrame {
+	JFrame fr = new JFrame("Chat Server");
+	private JPanel contentPane;
+	private JTextField tfPort;
+	private JTextField tfMessage;
+	
+	private ChatMessageSocket messageSocket;
+	
+	public server() {
+        fr.setSize(220, 180);
+        fr.setLocationRelativeTo(null);
+        fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        fr.setLayout(new GridLayout(4, 2));
+        
+	}
+}

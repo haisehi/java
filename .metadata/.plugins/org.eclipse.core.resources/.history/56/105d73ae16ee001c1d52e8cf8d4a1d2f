@@ -1,0 +1,38 @@
+package ChatServer;
+
+import java.awt.Container;
+import java.awt.GridLayout;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+
+import ChatLibrary.*;
+import ChatLibrary.ChatMessageSocket;
+
+public class server  extends JFrame {
+	JFrame fr = new JFrame("Chat Server");
+	private JPanel contentPane;
+	private JTextField tfPort;
+	private JTextField tfMessage;
+	
+	private ChatMessageSocket messageSocket;
+	//label
+	JLabel lblNewLabel = new JLabel("Chat Server");
+	JLabel lblNewLabel_1 = new JLabel("Port:");
+	JLabel lblNewLabel_2 = new JLabel("Message");
+	//textpane;
+	JTextPane tfMessageBoard = new JTextPane();
+	//button
+	JButton btnListen = new JButton("Listen");
+	JButton btnSend = new JButton("Send");
+	
+	public server() {
+	    Container con = fr.getContentPane();
+	    fr.setLocation(300,300);
+        
+	}
+}

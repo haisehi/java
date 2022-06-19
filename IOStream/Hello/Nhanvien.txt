@@ -1,0 +1,2 @@
+NhanVien [MaNV=nv01, HoTen=nv1, tuoi=19, Luong=3000.0]
+NhanVien [MaNV=nv02, HoTen=nv2, tuoi=19, Luong=3000.0]

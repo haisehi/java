@@ -1,0 +1,9 @@
+eclipse.preferences.version=1
+encoding//src/LayDiaChiIP/laydiachiIP.java=UTF-8
+encoding//src/LocalHost/clientLocalHost.java=UTF-8
+encoding//src/LocalHost/serverLocalHost.java=UTF-8
+encoding//src/TCPServer/Client.java=UTF-8
+encoding//src/TCPSocket/clientTCP.java=UTF-8
+encoding//src/TCPSocket/serverTCP.java=UTF-8
+encoding//src/UDPSocket/UDPClient.java=UTF-8
+encoding//src/UDPSocket/UDPServer.java=UTF-8

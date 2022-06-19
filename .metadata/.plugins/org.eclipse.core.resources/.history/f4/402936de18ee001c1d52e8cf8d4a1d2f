@@ -1,0 +1,166 @@
+package ChatClient;
+
+import java.awt.BorderLayout;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JSeparator;
+import java.awt.Color;
+import javax.swing.SwingConstants;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JTextPane;
+import java.awt.Font;
+
+import ChatLibrary.*;
+import java.awt.event.ActionListener;
+import java.net.Socket;
+import java.awt.event.ActionEvent;
+import javax.swing.JScrollBar;
+import javax.swing.DropMode;
+
+public class ChatClientForm extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField tfPort;
+	private JTextField tfMessage;
+	private JTextField tfServerHost;
+	
+	ChatMessageSocket mSocket;
+	private JTextField textField;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ChatClientForm frame = new ChatClientForm();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public ChatClientForm() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 587, 367);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Chat Client");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(242, 11, 122, 14);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Port:");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(315, 44, 49, 14);
+		contentPane.add(lblNewLabel_1);
+		
+		tfPort = new JTextField();
+		tfPort.setText("9888");
+		tfPort.setBounds(374, 43, 49, 20);
+		contentPane.add(tfPort);
+		tfPort.setColumns(10);
+		
+		JTextPane tfMessageBoard = new JTextPane();
+		tfMessageBoard.setBounds(10, 99, 573, 193);
+		contentPane.add(tfMessageBoard);
+		
+		JLabel lblNewLabel_2 = new JLabel("Message");
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel_2.setBounds(10, 303, 80, 14);
+		contentPane.add(lblNewLabel_2);
+		
+		JButton btnConnect = new JButton("Connect");
+		btnConnect.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					int port = Integer.parseInt(tfPort.getText());
+					Socket socket = new Socket(tfServerHost.getText(),port);
+					
+					mSocket = new ChatMessageSocket(socket,tfMessageBoard);
+					tfMessageBoard.setText(tfMessageBoard.getText()+"\nConnected!...");
+					
+				} catch (Exception e2) {
+					// TODO: handle exception
+					e2.printStackTrace();
+				}
+			}
+		});
+		btnConnect.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnConnect.setBounds(433, 40, 128, 23);
+		contentPane.add(btnConnect);
+		
+		tfMessage = new JTextField();
+		tfMessage.setBounds(103, 297, 359, 20);
+		contentPane.add(tfMessage);
+		tfMessage.setColumns(10);
+		
+		JButton btnSend = new JButton("Send");
+		btnSend.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (tfMessage.getText().equals("")) {
+					return;
+				}
+				mSocket.send(tfMessage.getText());
+			}
+		});
+		btnSend.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnSend.setBounds(472, 294, 89, 23);
+		contentPane.add(btnSend);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(10, 31, 551, 2);
+		contentPane.add(separator);
+		
+		JLabel lblNewLabel_3 = new JLabel("Server Host");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3.setBounds(10, 44, 102, 14);
+		contentPane.add(lblNewLabel_3);
+		
+		tfServerHost = new JTextField();
+		tfServerHost.setText("192.168.0.103");
+		tfServerHost.setBounds(122, 43, 102, 20);
+		contentPane.add(tfServerHost);
+		tfServerHost.setColumns(10);
+		
+		textField = new JTextField();
+		textField.setBounds(122, 74, 102, 20);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblNewLabel_4 = new JLabel("Name Server");
+		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_4.setBounds(10, 72, 100, 20);
+		contentPane.add(lblNewLabel_4);
+		
+		JButton btnFind = new JButton("Find");
+		btnFind.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btnFind.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnFind.setBounds(229, 42, 89, 23);
+		contentPane.add(btnFind);
+	}
+}

@@ -1,0 +1,15 @@
+package ChatServer;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import ChatLibrary.*;
+import ChatLibrary.ChatMessageSocket;
+
+public class server  extends JFrame {
+	private JPanel contentPane;
+	private JTextField tfPort;
+	private JTextField tfMessage;
+	
+	private 
+}
